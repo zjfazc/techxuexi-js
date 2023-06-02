@@ -51,9 +51,9 @@ const AnswerSaveUrl = "https://a6.qikekeji.com/txt/data/save/";
 const AnswerDetailUrl = "https://a6.qikekeji.com/txt/data/detail/";
 //获取当前日期
 var currDate = new Date().toISOString().split('T')[0];
-var newsNum = 10;
+var newsNum = 6; // 每日上限6分
 var news = [];
-var videoNum = 9;
+var videoNum = 6; // 每日上限6分
 var videos = [];
 //配置
 var settings = {};
@@ -1192,8 +1192,9 @@ async function start() {
                     tasks[1] = true;
                 }
 
+                // mark: 专项答题关闭后，每日答题的索引发生偏移
                 //检查每日答题
-                if (settings.ExamPractice && taskProgress[5].currentScore != taskProgress[5].dayMaxScore) {
+                if (settings.ExamPractice && taskProgress[3].currentScore != taskProgress[3].dayMaxScore) {
                     tasks[2] = false;//只要还有要做的，就当做没完成
                     console.log("3.做每日答题");
                     await doExamPractice();
@@ -1215,8 +1216,9 @@ async function start() {
                     tasks[3] = true;
                 }*/
 
+                // Mark:2023-6-2; 自2023年6月2日0点起，专项答题不再新出题。
                 //检查专项练习
-                if (settings.ExamPaper && taskProgress[4].currentScore == 0) {
+                /*if (settings.ExamPaper && taskProgress[4].currentScore == 0) {
                     tasks[4] = false;//只要还有要做的，就当做没完成
                     console.log("5.做专项练习");
                     let result = await doExamPaper();
@@ -1227,6 +1229,8 @@ async function start() {
                 } else {
                     tasks[4] = true;
                 }
+                */
+                tasks[4] = true;
 
                 if (tasks[0] && tasks[1] && tasks[2] && tasks[3] && tasks[4]) {
                     //如果检查都做完了，就不用继续了
