@@ -51,9 +51,9 @@ const AnswerSaveUrl = "https://a6.qikekeji.com/txt/data/save/";
 const AnswerDetailUrl = "https://a6.qikekeji.com/txt/data/detail/";
 //获取当前日期
 var currDate = new Date().toISOString().split('T')[0];
-var newsNum = 6;
+var newsNum = 10;
 var news = [];
-var videoNum = 6;
+var videoNum = 9;
 var videos = [];
 //配置
 var settings = {};
